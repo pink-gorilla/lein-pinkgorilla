@@ -2,7 +2,6 @@
   :description "A Leiningen plugin for the PinkGorilla Notebook."
   :url "https://github.com/pink-gorilla/lein-pinkgorilla"
   :license {:name "MIT"}
-  :description "Clojure<->R interop"
   :deploy-repositories [["releases" {:url "https://clojars.org/repo"
                                      :username :env/release_username
                                      :password :env/release_password
