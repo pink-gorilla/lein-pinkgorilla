@@ -13,31 +13,14 @@
 (defn pinkgorilla
   [project & opts]
   (let [opts-map (apply hash-map opts)
-        port (read-string (or (get opts-map ":port") "0"))
-        ip (or (get opts-map ":ip") "127.0.0.1")
-        nrepl-port (read-string (or (get opts-map ":nrepl-port") "0"))
-        c (or (get opts-map ":config") "config.edn")
         ;; inject the gorilla-repl dependency into the target project
         curr-deps (or (:dependencies project) [])
         new-deps (conj curr-deps ['org.pinkgorilla/gorilla-notebook pinkgorilla-version])
         prj (assoc project :dependencies new-deps)
-        project-name (:name project)
         gorilla-options (:gorilla-options project)]
     (eval/eval-in-project
      prj
-     `(pinkgorilla.notebook-app.core/run-gorilla-server {:port ~port
-                                                         :ip ~ip
-                                                         :nrepl-port ~nrepl-port
-                                                         :version ~pinkgorilla-version
-                                                         :project ~project-name
-                                                         :gorilla-options ~gorilla-options
-                                                         :c ~c})
+     `(pinkgorilla.notebook-app.core/run-gorilla-server 
+         (pinkgorilla.notebook-app.cli/parse-opts ~opts ))
      '(require 'pinkgorilla.notebook-app.core))))
 
-
-#_(defn run-notebook []
-    (let [args2 ["-c" "./profiles/notebook/config.edn"]
-          {:keys [options]} (parse-opts args2)]
-      (println "Options Are: " options)
-      (run-gorilla-server options)
-      nil))
