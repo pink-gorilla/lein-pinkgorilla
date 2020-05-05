@@ -31,7 +31,7 @@
                                                          :version ~pinkgorilla-version
                                                          :project ~project-name
                                                          :gorilla-options ~gorilla-options
-                                                         :c c})
+                                                         :c ~c})
      '(require 'pinkgorilla.notebook-app.core))))
 
 
