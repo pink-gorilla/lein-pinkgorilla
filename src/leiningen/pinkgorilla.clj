@@ -1,8 +1,9 @@
 (ns leiningen.pinkgorilla
   (:require
    [leiningen.core.eval :as eval]
-   [pinkgorilla.notebook-app.cli :refer [parse-opts]]
-   [pinkgorilla.notebook-app.core :refer [run-gorilla-server]]))
+   ;[pinkgorilla.notebook-app.cli :refer [parse-opts]]
+   ;[pinkgorilla.notebook-app.core :refer [run-gorilla-server]]
+   ))
 
 ;; The version of PinkGorilla that we will use
 (def pinkgorilla-version "0.4.17")
@@ -31,7 +32,7 @@
                            :project ~project-name
                            :gorilla-options ~gorilla-options
                            :c c})
-     '(require 'pinkgorilla.notebook-app.core))))
+     '(require 'pinkgorilla.notebook-app.core :refer [run-gorilla-server]))))
 
 
 #_(defn run-notebook []
