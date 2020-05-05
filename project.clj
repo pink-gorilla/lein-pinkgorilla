@@ -22,6 +22,7 @@
                   ["bump-version"]
                   ["vcs" "commit" "Begin %s"]
                   ["vcs" "push"]]
+  
   :aliases {"bump-version"
             ["change" "version" "leiningen.release/bump-version"]})
 
