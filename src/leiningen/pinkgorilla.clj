@@ -25,19 +25,19 @@
         gorilla-options (:gorilla-options project)]
     (eval/eval-in-project
      prj
-     `(g/run-gorilla-server {:port ~port
-                           :ip ~ip
-                           :nrepl-port ~nrepl-port
-                           :version ~pinkgorilla-version
-                           :project ~project-name
-                           :gorilla-options ~gorilla-options
-                           :c c})
-     '(require 'pinkgorilla.notebook-app.core :as g :refer [run-gorilla-server]))))
+     `(pinkgorilla.notebook-app.core/run-gorilla-server {:port ~port
+                                                         :ip ~ip
+                                                         :nrepl-port ~nrepl-port
+                                                         :version ~pinkgorilla-version
+                                                         :project ~project-name
+                                                         :gorilla-options ~gorilla-options
+                                                         :c c})
+     '(require 'pinkgorilla.notebook-app.core))))
 
 
 #_(defn run-notebook []
-  (let [args2 ["-c" "./profiles/notebook/config.edn"]
-        {:keys [options]} (parse-opts args2)]
-    (println "Options Are: " options)
-    (run-gorilla-server options)
-    nil))
+    (let [args2 ["-c" "./profiles/notebook/config.edn"]
+          {:keys [options]} (parse-opts args2)]
+      (println "Options Are: " options)
+      (run-gorilla-server options)
+      nil))
