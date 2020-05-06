@@ -7,7 +7,9 @@
                                      :password :env/release_password
                                      :sign-releases false}]]
 
-  :dependencies [[org.pinkgorilla/gorilla-notebook "0.4.17"]]
+  :dependencies 
+  [[org.pinkgorilla/gorilla-notebook "0.4.17"]
+   [org.pinkgorilla/notebook-encoding "0.0.34"]]
   
   :eval-in-leiningen true
 

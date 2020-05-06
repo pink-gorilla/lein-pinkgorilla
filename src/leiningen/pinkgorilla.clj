@@ -5,6 +5,7 @@
 ;; The version of PinkGorilla that we will use
 (def pinkgorilla-version "0.4.17")
 
+
 ;; This is the leiningen task. It needs no arguments, and can run outside a project 
 ;; (assuming you've got the plugin installed in your profile).
 (defn pinkgorilla
@@ -16,7 +17,11 @@
         prj (assoc project :dependencies new-deps)]
     (eval/eval-in-project
      prj
-     `(pinkgorilla.notebook-app.core/run-gorilla-server 
-         (merge (pinkgorilla.notebook-app.cli/parse-opts ~opts) ~opts-project))
+     `(pinkgorilla.notebook-app.core/run-gorilla-server
+       (merge (pinkgorilla.notebook-app.cli/parse-opts ~opts) ~opts-project))
      '(require 'pinkgorilla.notebook-app.core))))
+
+
+
+
 
