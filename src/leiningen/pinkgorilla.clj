@@ -18,10 +18,8 @@
     (eval/eval-in-project
      prj
      `(pinkgorilla.notebook-app.core/run-gorilla-server
-       (merge (pinkgorilla.notebook-app.cli/parse-opts ~opts) ~opts-project))
+       (merge (:options (pinkgorilla.notebook-app.cli/parse-opts ~opts)) ~opts-project))
      '(require 'pinkgorilla.notebook-app.core))))
-
-
 
 
 
