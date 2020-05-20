@@ -1,4 +1,4 @@
-(defproject org.pinkgorilla/lein-pinkgorilla "0.0.14-SNAPSHOT"
+(defproject org.pinkgorilla/lein-pinkgorilla "0.0.14"
   :description "A Leiningen plugin for the PinkGorilla Notebook."
   :url "https://github.com/pink-gorilla/lein-pinkgorilla"
   :license {:name "MIT"}
