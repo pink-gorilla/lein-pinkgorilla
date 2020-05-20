@@ -9,7 +9,7 @@
 
   :dependencies 
   [[org.pinkgorilla/gorilla-notebook "0.4.17"]
-   [org.pinkgorilla/notebook-encoding "0.0.34"]]
+   [org.pinkgorilla/notebook-encoding "0.0.35"]]
   
   :eval-in-leiningen true
 
