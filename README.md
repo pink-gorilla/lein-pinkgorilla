@@ -1,4 +1,5 @@
 # lein-pinkgorilla
+ [![GitHub Actions status |pink-gorilla/lein-pinkgorilla](https://github.com/pink-gorilla/lein-pinkgorilla/workflows/CI/badge.svg)](https://github.com/pink-gorilla/lein-pinkgorilla/actions?workflow=CI)[![Clojars Project](https://img.shields.io/clojars/v/org.pinkgorilla/lein-pinkgorilla.svg)](https://clojars.org/org.pinkgorilla/lein-pinkgorilla)
 
 # Running Gorilla Notebook via "lein pinkgorilla"
 
