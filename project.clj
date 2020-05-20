@@ -6,13 +6,6 @@
                                      :username :env/release_username
                                      :password :env/release_password
                                      :sign-releases false}]]
-
-  :dependencies 
-  [[org.pinkgorilla/gorilla-notebook "0.4.17"]
-   [org.pinkgorilla/notebook-encoding "0.0.36"]]
-  
-  :eval-in-leiningen true
-
   :min-lein-version "2.9.1"
   :min-java-version "1.11"
 
@@ -24,7 +17,14 @@
                   ["bump-version"]
                   ["vcs" "commit" "Begin %s"]
                   ["vcs" "push"]]
-  
+
+  :eval-in-leiningen true
+
+  :dependencies
+  [[org.pinkgorilla/notebook-encoding "0.0.37"] ; encodig is more recent than in notebook
+   [org.pinkgorilla/gorilla-notebook "0.4.17"
+    :exclusions [org.pinkgorilla/notebook-encoding]]]
+
   :aliases {"bump-version"
             ["change" "version" "leiningen.release/bump-version"]})
 
