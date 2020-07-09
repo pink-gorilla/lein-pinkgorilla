@@ -1,11 +1,24 @@
 # lein-pinkgorilla
  [![GitHub Actions status |pink-gorilla/lein-pinkgorilla](https://github.com/pink-gorilla/lein-pinkgorilla/workflows/CI/badge.svg)](https://github.com/pink-gorilla/lein-pinkgorilla/actions?workflow=CI)[![Clojars Project](https://img.shields.io/clojars/v/org.pinkgorilla/lein-pinkgorilla.svg)](https://clojars.org/org.pinkgorilla/lein-pinkgorilla)
 
-# Running Gorilla Notebook via "lein pinkgorilla"
+- This leiningen plugin makes it easy to run pinkgorilla notebook, goldly, repl-relay, etc.
+- Since it is a leiningen profile, you can either install it in your user profile, 
+  or you can add it to your project.
+- A demo project that uses lein-pinkgorilla is [ta](https://github.com/pink-gorilla/trateg)
 
-## inside project.clj
+# Installation
 
-To use Gorilla in one of your Leiningen projects,  add the following to the :plugins section of that project’s project.clj file:
+## user profile
+
+Just add the following to your ~/.lein/profiles.clj
+
+```
+{:user {:plugins [[org.pinkgorilla/lein-pinkgorilla "0.0.9"]]}}
+```
+
+## in your leiningen project (project.clj)
+
+To use PinkGorilla in one of your Leiningen projects,  add the following to the :plugins section of that project’s project.clj file:
 
 ```
 [lein-pinkgorilla "0.0.9"]
@@ -23,18 +36,30 @@ Your completed project.clj file might look something like this:
   :profiles {:uberjar {:aot :all}})
 ```
 
-That’s it. You should now be able to run ```lein pinkgorilla``` from within the project directory and get started.
+# Configuration
+We ship a default configuration, which you can run out-of-the-box - no need to make changes!
+But if you want to change the configuration, you have several options:
+  - In project.clj add {:pinkgorilla {:options-to-override "here"}}
+  - In commandline. Run ```lein pinkgorilla dry --help``` to see available commandline options
+  - In the file gorilla-config.edn 
+  - Environment variables. Please refer to https://github.com/tolitius/cprop to understand how to define nested configuration options in environment variables.
 
-## in user profile
+## dry
 
-Alternatively, just add the following to your ~/.lein/profiles.clj
+Run ```lein pinkgorilla dry``` this will show you the configuration map
+This allows you to configure gorilla, but instead of running something,
+it will just print the resulting config to the commandline.
 
-{:user {:plugins [[org.pinkgorilla/lein-pinkgorilla "0.0.9"]]}}
+## relay
 
-A demo project that uses lein-pinkgorilla is [ta](https://github.com/pink-gorilla/trateg)
+Run ```lein pinkgorilla relay``` to run an nrepl relay (that already brings your 
+dependencies with it.
 
+## notebook
 
-# lein nbconvert
+You can now run ```lein pinkgorilla notebook``` from within the project directory.
+
+## lein nbconvert
 
 Convert Jupyter / Clojure files to pinkgorilla notebook:
 
@@ -42,11 +67,6 @@ Convert Jupyter / Clojure files to pinkgorilla notebook:
 lein nbconvert demo.ipynb
 lein nbconvert demo.clj
 ```
-
-# lein dry
-
-This allows you to configure gorilla, but instead of running something,
-it will just print the resulting config to the commandline.
 
 
 
