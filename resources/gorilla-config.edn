@@ -1,0 +1,4 @@
+{:nrepl-server {:port 12000}
+ :relay {:port 9000
+         :route "/nrepl"}}
+ 

@@ -43,5 +43,10 @@ lein nbconvert demo.ipynb
 lein nbconvert demo.clj
 ```
 
+# lein dry
+
+This allows you to configure gorilla, but instead of running something,
+it will just print the resulting config to the commandline.
+
 
 

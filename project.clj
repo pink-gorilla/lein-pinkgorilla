@@ -18,12 +18,24 @@
                   ["vcs" "commit" "Begin %s"]
                   ["vcs" "push"]]
 
+  :resource-paths ["resources"]
+
   :eval-in-leiningen true
 
-  :dependencies
-  [[org.pinkgorilla/notebook-encoding "0.0.37"] ; encodig is more recent than in notebook
-   [org.pinkgorilla/gorilla-notebook "0.4.17"
-    :exclusions [org.pinkgorilla/notebook-encoding]]]
+  :managed-dependencies [[org.clojure/clojure "1.10.1"]
+                         [org.clojure/core.async "1.2.603"]
+                         [org.clojure/clojurescript "1.10.773"]
+                         [nrepl "0.8.0-alpha5"]  ; 0.7.0 lacks add-middleware 
+                         [com.cognitect/transit-clj "1.0.324"]
+                         [com.cognitect/transit-cljs "0.8.264"]
+                         [com.fasterxml.jackson.core/jackson-core "2.11.0"]
+                         [cheshire "5.10.0"]
+                         [org.clojure/tools.reader "1.3.2"]]
+
+  :dependencies [[nrepl "0.8.0-alpha5"]  ; 0.7.0 lacks add-middleware
+                 [org.clojure/tools.cli "1.0.194"] ; commandline args
+                 [cprop "0.1.17"] ; configuration
+                 ]
 
   :aliases {"bump-version"
             ["change" "version" "leiningen.release/bump-version"]})
