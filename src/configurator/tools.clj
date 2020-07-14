@@ -5,6 +5,8 @@
    [cprop.source :as source]
    [configurator.cli :refer [cli-config]]))
 
+(def debug? false)
+
 (defn add-dependencies
   "Adds dependencies to the end of the current vector."
   [project deps]
@@ -33,8 +35,6 @@
       (source/from-file path)
       {})))
 
-
-
 (defn config-project
   "returns a map which represents the configuration"
   [project cli-args]
@@ -46,8 +46,7 @@
                   lein-config
                   ;(source/from-system-props)
                   ;(source/from-env)
-                  (cli-config cli-args)
-                  ])))
+                  (cli-config cli-args)])))
 
 
 

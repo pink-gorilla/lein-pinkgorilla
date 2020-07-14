@@ -8,6 +8,7 @@
 ; for testing it is good to see the final configuration thst would
 ; be run.
 
+
 (defn dry [project & args]
   (let [config (config-project project args)]
     (println "You would start gorilla with the following configuration:\r\n"

@@ -36,19 +36,7 @@ Your completed project.clj file might look something like this:
   :profiles {:uberjar {:aot :all}})
 ```
 
-# Configuration
-We ship a default configuration, which you can run out-of-the-box - no need to make changes!
-But if you want to change the configuration, you have several options:
-  - In project.clj add {:pinkgorilla {:options-to-override "here"}}
-  - In commandline. Run ```lein pinkgorilla dry --help``` to see available commandline options
-  - In the file gorilla-config.edn 
-  - Environment variables. Please refer to https://github.com/tolitius/cprop to understand how to define nested configuration options in environment variables.
-
-## dry
-
-Run ```lein pinkgorilla dry``` this will show you the configuration map
-This allows you to configure gorilla, but instead of running something,
-it will just print the resulting config to the commandline.
+# Run
 
 ## relay
 
@@ -67,6 +55,22 @@ Convert Jupyter / Clojure files to pinkgorilla notebook:
 lein nbconvert demo.ipynb
 lein nbconvert demo.clj
 ```
+
+# Configuration
+
+We ship a default configuration, which you can run out-of-the-box - no need to make changes!
+But if you want to change the configuration, you have several options:
+  - In project.clj add {:pinkgorilla {:options-to-override "here"}}
+  - In commandline. Run ```lein pinkgorilla dry --help``` to see available commandline options
+  - In the file gorilla-config.edn 
+  - Environment variables. Please refer to https://github.com/tolitius/cprop to understand how to define nested configuration options in environment variables.
+
+Run ```lein pinkgorilla dry``` to see the current configuration. If you did not make any
+changes yet, then this will give you an idea which options you might want to override.
+
+If you already made canges to the configuration, it allows you to check if your
+configuration optionsdid get applied.
+
 
 
 

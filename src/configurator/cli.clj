@@ -58,7 +58,6 @@
   (println msg)
   (System/exit status))
 
-
 (defn parse-opts [args]
   (let [{:keys [options errors summary] :as parsed} (cli/parse-opts args cli-options)]
     (cond
@@ -67,20 +66,18 @@
       (not-empty errors) (exit 1 (error-msg errors)))
     parsed))
 
-
 (defn cli-config [args]
   (:options (parse-opts args)))
-
 
 (comment
 
   (let [args ["-C" "CONFIG.EDN"]]
     (parse-opts args))
-   (parse-opts ["-p" "3008"])
-   (parse-opts ["-p" "3008" "-h" "127.0.0.1"])
+  (parse-opts ["-p" "3008"])
+  (parse-opts ["-p" "3008" "-h" "127.0.0.1"])
   (cli-config ["-p" "3008" "-h" "127.0.0.1"])
   (cli-config [])
   (cli-config ["--help"])
-  
+
 ;
   )

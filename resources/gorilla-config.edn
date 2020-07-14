@@ -1,4 +1,27 @@
-{:nrepl-server {:port 12000}
- :relay {:port 9000
-         :route "/nrepl"}}
- 
+{:timbre-loglevel :debug
+ :backend {:nrepl-server {:port 12000}, 
+           :relay {:port 9000, 
+                   :route "/nrepl"}, 
+           :explorer {:exclude #{".svn" ".git"}, 
+                      :roots {:gorilla-notebook "../gorilla-notebook/notebooks"}}}, 
+ :frontend 
+ {:keybindings [{:desc "Settings Edit.", :kb "f1", :handler [:settings/show]}
+                {:desc "New notebook", :kb "alt-n", :handler [:document/new]} 
+                {:desc "Explore Notebooks.", :kb "alt-e", :handler [:bidi/goto :ui/explorer]}
+                {:desc "Show the command list.", :kb "f2", :handler [:palette/show]}
+                {:desc "Save", :kb "alt-s", :handler [:save-notebook]} 
+                {:desc "Save As", :kb "alt-shift-s", :handler [:document/save-as]} 
+                {:desc "Clear the output of all code segments.", :kb "alt-shift-backspace", :handler [:notebook/clear-all]} 
+                {:desc "Evaluate all segments.", :kb "alt-shift-enter", :handler [:notebook/evaluate-all]} 
+                {:desc "Move the highlighted segment up the worksheet.", :kb "alt-up", :handler [:notebook/move :up]}
+                {:desc "Move the highlighted segment down the worksheet.", :kb "alt-down", :handler [:notebook/move :down]} 
+                {:desc "Clear the output of the highlighted segment.", :kb "shift-backspace", :handler [:notebook/clear-active]} 
+                {:desc "Kernel Toggle.", :kb "ctrl-3", :handler [:segment/kernel-toggle]} 
+                {:desc "move to next auto-completion candidate", :kb "tab", :handler [:completion/next]} 
+                {:desc "move to prior auto-completion candidate", :kb "shift-tab", :handler [:completion/prior]}
+                {:desc "Show possible auto-completions.", :kb "ctrl-space", :handler [:worksheet:completions]}
+                {:desc "Evaluate the highlighted segment.", :kb "shift-enter", :handler [:notebook/eval]}], 
+  :nrepl-endpoint "ws://localhost:9000/nrepl", 
+  :explorer {:repositories [{:name "local", :save true, :url "/api/explorer"} 
+                            {:name "public", :url "https://raw.githubusercontent.com/pink-gorilla/gorilla-explore/master/resources/list.json"}]}, 
+  :title "PinkGorilla Notebook"}}
