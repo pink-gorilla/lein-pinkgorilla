@@ -1,7 +1,7 @@
 # lein-pinkgorilla
  [![GitHub Actions status |pink-gorilla/lein-pinkgorilla](https://github.com/pink-gorilla/lein-pinkgorilla/workflows/CI/badge.svg)](https://github.com/pink-gorilla/lein-pinkgorilla/actions?workflow=CI)[![Clojars Project](https://img.shields.io/clojars/v/org.pinkgorilla/lein-pinkgorilla.svg)](https://clojars.org/org.pinkgorilla/lein-pinkgorilla)
 
-- This leiningen plugin makes it easy to run pinkgorilla notebook, goldly, repl-relay, etc.
+- This leiningen plugin makes it easy to run pinkgorilla notebook, goldly, nrepl-relay, etc.
 - Since it is a leiningen profile, you can either install it in your user profile, 
   or you can add it to your project.
 - A demo project that uses lein-pinkgorilla is [ta](https://github.com/pink-gorilla/trateg)
@@ -13,7 +13,7 @@
 Just add the following to your ~/.lein/profiles.clj
 
 ```
-{:user {:plugins [[org.pinkgorilla/lein-pinkgorilla "0.0.9"]]}}
+{:user {:plugins [[org.pinkgorilla/lein-pinkgorilla "0.0.17"]]}}
 ```
 
 ## in your leiningen project (project.clj)
@@ -21,7 +21,7 @@ Just add the following to your ~/.lein/profiles.clj
 To use PinkGorilla in one of your Leiningen projects,  add the following to the :plugins section of that project’s project.clj file:
 
 ```
-[lein-pinkgorilla "0.0.9"]
+[lein-pinkgorilla "0.0.17"]
 ```
 
 Your completed project.clj file might look something like this:
@@ -32,22 +32,21 @@ Your completed project.clj file might look something like this:
   :dependencies [[org.clojure/clojure "1.10.0"]]
   :main ^:skip-aot demo.core
   :target-path "target/%s"
-  :plugins [[org.pinkgorilla/lein-pinkgorilla "0.0.9"]]
+  :plugins [[org.pinkgorilla/lein-pinkgorilla "0.0.17"]]
   :profiles {:uberjar {:aot :all}})
 ```
 
 # Run
 
-## relay
-
-Run ```lein pinkgorilla relay``` to run an nrepl relay (that already brings your 
-dependencies with it.
-
 ## notebook
 
-You can now run ```lein pinkgorilla notebook``` from within the project directory.
+`lein pinkgorilla notebook` runs the notebook. It can be run either
+via user profile install, or as plugin inside your project.clj. If you 
+use it inside your project, the repl will have your additional
+dependences available in the notebook witout haing to use `add-dependency`.
+See configuration below.
 
-## lein nbconvert
+## nbconvert
 
 Convert Jupyter / Clojure files to pinkgorilla notebook:
 
@@ -56,21 +55,21 @@ lein nbconvert demo.ipynb
 lein nbconvert demo.clj
 ```
 
+## relay
+
+`lein pinkgorilla relay` runs an nrepl relay without any other frontend.
+Usful for testing.
+
 # Configuration
 
-We ship a default configuration, which you can run out-of-the-box - no need to make changes!
-But if you want to change the configuration, you have several options:
+We ship a **default configuration**, which you can run out-of-the-box - no need to make changes! But if you want to change the configuration, you have several options:
   - In project.clj add {:pinkgorilla {:options-to-override "here"}}
   - In commandline. Run ```lein pinkgorilla dry --help``` to see available commandline options
-  - In the file gorilla-config.edn 
+  - In the file gorilla-config.edn (in the same path as project.clj)
   - Environment variables. Please refer to https://github.com/tolitius/cprop to understand how to define nested configuration options in environment variables.
 
-Run ```lein pinkgorilla dry``` to see the current configuration. If you did not make any
+Run `lein pinkgorilla dry` to see the current configuration. If you did not make any
 changes yet, then this will give you an idea which options you might want to override.
 
 If you already made canges to the configuration, it allows you to check if your
-configuration optionsdid get applied.
-
-
-
-
+configuration options did get applied correctly.
