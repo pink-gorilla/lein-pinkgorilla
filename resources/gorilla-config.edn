@@ -1,6 +1,6 @@
 {:timbre-loglevel :debug
- :backend {:nrepl-server {:port 12000}, 
-           :relay {:port 9000, 
+ :backend {:nrepl-server {:port 9100}, 
+           :relay {:port 9200, 
                    :route "/nrepl"}, 
            :explorer {:exclude #{".svn" ".git"}, 
                       :roots {:gorilla-notebook "../gorilla-notebook/notebooks"}}}, 
