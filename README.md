@@ -40,7 +40,7 @@ Your completed project.clj file might look something like this:
 
 ## notebook
 
-`lein pinkgorilla notebook` runs the notebook. It can be run either
+`lein notebook` runs the notebook. It can be run either
 via user profile install, or as plugin inside your project.clj. If you 
 use it inside your project, the repl will have your additional
 dependences available in the notebook witout haing to use `add-dependency`.
@@ -51,24 +51,24 @@ See configuration below.
 Convert Jupyter / Clojure files to pinkgorilla notebook:
 
 ```
-lein nbconvert demo.ipynb
+lein pinkgorilla nbconvert demo.ipynb
 lein nbconvert demo.clj
 ```
 
 ## relay
 
-`lein pinkgorilla relay` runs an nrepl relay without any other frontend.
+`lein relay` runs an nrepl relay without any other frontend.
 Usful for testing.
 
 # Configuration
 
 We ship a **default configuration**, which you can run out-of-the-box - no need to make changes! But if you want to change the configuration, you have several options:
   - In project.clj add {:pinkgorilla {:options-to-override "here"}}
-  - In commandline. Run ```lein pinkgorilla dry --help``` to see available commandline options
+  - In commandline. Run `lein nbconfig --help` to see available commandline options
   - In the file gorilla-config.edn (in the same path as project.clj)
   - Environment variables. Please refer to https://github.com/tolitius/cprop to understand how to define nested configuration options in environment variables.
 
-Run `lein pinkgorilla dry` to see the current configuration. If you did not make any
+Run `lein nbconfig` to see the current configuration. If you did not make any
 changes yet, then this will give you an idea which options you might want to override.
 
 If you already made canges to the configuration, it allows you to check if your
