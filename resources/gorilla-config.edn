@@ -1,27 +1,83 @@
-{:timbre-loglevel :debug
- :backend {:nrepl-server {:port 9100}, 
-           :relay {:port 9200, 
-                   :route "/nrepl"}, 
-           :explorer {:exclude #{".svn" ".git"}, 
-                      :roots {:gorilla-notebook "../gorilla-notebook/notebooks"}}}, 
- :frontend 
- {:keybindings [{:desc "Settings Edit.", :kb "f1", :handler [:settings/show]}
-                {:desc "New notebook", :kb "alt-n", :handler [:document/new]} 
-                {:desc "Explore Notebooks.", :kb "alt-e", :handler [:bidi/goto :ui/explorer]}
-                {:desc "Show the command list.", :kb "f2", :handler [:palette/show]}
-                {:desc "Save", :kb "alt-s", :handler [:save-notebook]} 
-                {:desc "Save As", :kb "alt-shift-s", :handler [:document/save-as]} 
-                {:desc "Clear the output of all code segments.", :kb "alt-shift-backspace", :handler [:notebook/clear-all]} 
-                {:desc "Evaluate all segments.", :kb "alt-shift-enter", :handler [:notebook/evaluate-all]} 
-                {:desc "Move the highlighted segment up the worksheet.", :kb "alt-up", :handler [:notebook/move :up]}
-                {:desc "Move the highlighted segment down the worksheet.", :kb "alt-down", :handler [:notebook/move :down]} 
-                {:desc "Clear the output of the highlighted segment.", :kb "shift-backspace", :handler [:notebook/clear-active]} 
-                {:desc "Kernel Toggle.", :kb "ctrl-3", :handler [:segment/kernel-toggle]} 
-                {:desc "move to next auto-completion candidate", :kb "tab", :handler [:completion/next]} 
-                {:desc "move to prior auto-completion candidate", :kb "shift-tab", :handler [:completion/prior]}
-                {:desc "Show possible auto-completions.", :kb "ctrl-space", :handler [:worksheet:completions]}
-                {:desc "Evaluate the highlighted segment.", :kb "shift-enter", :handler [:notebook/eval]}], 
-  :nrepl-endpoint "ws://localhost:9000/nrepl", 
-  :explorer {:repositories [{:name "local", :save true, :url "/api/explorer"} 
-                            {:name "public", :url "https://raw.githubusercontent.com/pink-gorilla/gorilla-explore/master/resources/list.json"}]}, 
-  :title "PinkGorilla Notebook"}}
+{:timbre-loglevel :debug,
+ :backend
+ {:nrepl-server {:port 12000},
+  :relay {:port 9000, :route "/nrepl"},
+  :explorer {:exclude #{".svn" ".git"}, :roots {:app "./notebooks"}}},
+ :frontend
+ {:keybindings
+  [{:kb "alt-g e",
+    :handler [:bidi/goto :ui/explorer],
+    :desc "Notebook Explorer"}
+   {:kb "alt-g u",
+    :handler [:settings/show],
+    :desc "User Settings Edit"}
+   {:kb "alt-g k",
+    :handler [:palette/show],
+    :desc "Keybindings dialog"}
+   {:kb "alt-g r", :handler [:bidi/goto :ui/nrepl], :desc "nRepl page"}
+   {:kb "alt-g n", :handler [:document/new], :desc "New notebook"}
+   {:kb "esc",
+    :handler [:notebook/close-dialog-or-exit-edit],
+    :desc "Dialog Close"}
+   {:kb "alt-g s", :handler [:notebook/save], :desc "Save Notebook"}
+   {:kb "alt-shift-g s", :handler [:document/save-as], :desc "Save As"}
+   {:kb "alt-shift-backspace",
+    :handler [:notebook/clear-all],
+    :desc "Clear the output of all code segments."}
+   {:kb "alt-shift-enter",
+    :handler [:notebook/evaluate-all],
+    :desc "Evaluate all segments."}
+   {:kb "alt-g m",
+    :handler [:notebook/meta-show],
+    :desc "Edit Notebook Meta Data"}
+   {:kb "alt-up",
+    :handler [:notebook/move :up],
+    :desc "Move to prior segment"}
+   {:kb "alt-down",
+    :handler [:notebook/move :down],
+    :desc "Move to next segment"}
+   {:kb "shift-backspace",
+    :handler [:notebook/clear-active],
+    :desc "Clear the output of active segment"}
+   {:kb "alt-g t",
+    :handler [:segment/kernel-toggle],
+    :desc "Kernel Toggle"}
+   {:kb "alt-g i",
+    :handler [:segment/new-above],
+    :desc "Create a new segment above active segment"}
+   {:kb "alt-g b",
+    :handler [:segment/new-below],
+    :desc "Insert a new segment below active segment"}
+   {:kb "alt-g x",
+    :handler [:segment/delete-active],
+    :desc "Delete the active segment"}
+   {:kb "alt-g m",
+    :handler [:worksheet:changeToFree],
+    :desc "Convert active segment to a markdown segment"}
+   {:kb "alt-g j",
+    :handler [:worksheet:changeToCode],
+    :desc "Convert active segment to a clojure segment"}
+   {:kb "tab",
+    :handler [:completion/next],
+    :desc "move to next auto-completion candidate"}
+   {:kb "shift-tab",
+    :handler [:completion/prior],
+    :desc "move to prior auto-completion candidate"}
+   {:kb "ctrl-space",
+    :handler [:worksheet:completions],
+    :desc "Show possible auto-completions"}
+   {:kb "shift-enter",
+    :handler [:notebook/eval],
+    :desc "Evaluate the highlighted segment"}
+   {:kb "alt-g c",
+    :handler [:clojuredocs],
+    :desc "Look up the symbol under the cursor in ClojureDocs"}],
+  :nrepl-endpoint "ws://localhost:9000/nrepl",
+  :explorer
+  {:repositories
+   [{:name "local", :url "/api/explorer", :save true}
+    {:name "public",
+     :url
+     "https://raw.githubusercontent.com/pink-gorilla/gorilla-explore/master/resources/list.json"}]},
+  :title "PinkGorilla Notebook",
+  :icon "/r/webly/pink-gorilla-32.png"}}

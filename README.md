@@ -73,3 +73,5 @@ changes yet, then this will give you an idea which options you might want to ove
 
 If you already made canges to the configuration, it allows you to check if your
 configuration options did get applied correctly.
+
+If you are a developer and want to rebuild the default config, then `lein defaultconfig` ran inside the leiningen project will do the job.
