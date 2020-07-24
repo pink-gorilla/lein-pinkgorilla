@@ -5,7 +5,7 @@
    [configurator.tools :refer [debug? add-dependencies config-project]]))
 
 (def notebook-deps
-  [['org.pinkgorilla/notebook-clj "0.0.4"]])
+  [['org.pinkgorilla/notebook-clj "0.0.5"]])
 
 (defn defaultconfig [project & args]
   (let [config (config-project project args)
@@ -15,11 +15,11 @@
      project
      `(do
         ;(taoensso.timbre/set-level! :debug)
-        (println "Saving config to ./resources/gorilla-config.edn ..")
+        (println "Saving config to ./resources/notebook-config.edn ..")
         (->> pinkgorilla.notebook.config/default-notebook-config
              (clojure.pprint/pprint)
              (with-out-str)
-             (spit "./resources/gorilla-config.edn")))
+             (spit "./resources/notebook-config.edn")))
      '(do ;(require 'taoensso.timbre)
         (require 'clojure.pprint)
         (require 'pinkgorilla.notebook.app) ; side-effects

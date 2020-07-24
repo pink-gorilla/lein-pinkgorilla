@@ -1,6 +1,6 @@
 {:timbre-loglevel :debug,
  :backend
- {:nrepl-server {:port 12000},
+ {:nrepl-server {:port 9100},
   :relay {:port 9000, :route "/nrepl"},
   :explorer {:exclude #{".svn" ".git"}, :roots {:app "./notebooks"}}},
  :frontend
@@ -57,6 +57,12 @@
    {:kb "alt-g j",
     :handler [:worksheet:changeToCode],
     :desc "Convert active segment to a clojure segment"}
+   {:kb "shift-enter",
+    :handler [:notebook/eval],
+    :desc "Evaluate the highlighted segment"}
+   {:kb "ctrl-space",
+    :handler [:codemirror/completion-get],
+    :desc "Show possible auto-completions"}
    {:kb "tab",
     :handler [:completion/next],
     :desc "move to next auto-completion candidate"}
@@ -64,11 +70,8 @@
     :handler [:completion/prior],
     :desc "move to prior auto-completion candidate"}
    {:kb "ctrl-space",
-    :handler [:worksheet:completions],
-    :desc "Show possible auto-completions"}
-   {:kb "shift-enter",
-    :handler [:notebook/eval],
-    :desc "Evaluate the highlighted segment"}
+    :handler [:completion/show-all-toggle],
+    :desc "show all / only one line completions"}
    {:kb "alt-g c",
     :handler [:clojuredocs],
     :desc "Look up the symbol under the cursor in ClojureDocs"}],

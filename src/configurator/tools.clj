@@ -37,16 +37,18 @@
 
 (defn config-project
   "returns a map which represents the configuration"
-  [project cli-args]
-  (let [lein-config (or (:pinkgorilla project) {})]
-    (load-config :resource "gorilla-config.edn"
-                 :merge
-                 [;(source/from-resource "gorilla-config.edn")
+  ([project cli-args]
+   (config-project project cli-args "notebook-config.edn"))
+  ([project cli-args resource-config-edn]
+   (let [lein-config (or (:pinkgorilla project) {})]
+     (load-config :resource resource-config-edn
+                  :merge
+                  [;(source/from-resource "gorilla-config.edn")
                   ;(from-file "gorilla-config.edn")
-                  lein-config
+                   lein-config
                   ;(source/from-system-props)
                   ;(source/from-env)
-                  (cli-config cli-args)])))
+                   (cli-config cli-args)]))))
 
 
 

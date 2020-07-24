@@ -16,7 +16,7 @@
    ['info.sunng/ring-jetty9-adapter "0.12.5"]])
 
 (defn relay [project & args]
-  (let [config (config-project project args)
+  (let [config (config-project project args "relay-config.edn")
         backend-config (:backend config)
         project (add-dependencies project jetty-relay-deps)
         _ (when debug? (println "project: " project))]
