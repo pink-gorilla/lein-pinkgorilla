@@ -60,6 +60,12 @@ lein nbconvert demo.clj
 `lein relay` runs an nrepl relay without any other frontend.
 Usful for testing.
 
+## goldly
+
+`lein goldly` runs the goldly app.
+
+
+
 # Configuration
 
 We ship a **default configuration**, which you can run out-of-the-box - no need to make changes! But if you want to change the configuration, you have several options:

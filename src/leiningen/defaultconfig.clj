@@ -5,7 +5,7 @@
    [configurator.tools :refer [debug? add-dependencies config-project]]))
 
 (def notebook-deps
-  [['org.pinkgorilla/notebook-clj "0.0.5"]])
+  [['org.pinkgorilla/notebook-clj "0.0.6"]])
 
 (defn defaultconfig [project & args]
   (let [config (config-project project args)

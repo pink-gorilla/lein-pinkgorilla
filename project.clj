@@ -61,17 +61,18 @@
      [tigris "0.1.2"]]
 
 
-  :dependencies [[nrepl "0.8.0-alpha5"]  ; 0.7.0 lacks add-middleware
+  :dependencies [[nrepl "0.8.0"]  ; 0.7.0 lacks add-middleware
                  [org.clojure/tools.cli "1.0.194"] ; commandline args
                  [cprop "0.1.17"] ; configuration
                  ]
 
 
   :profiles {; plugins fuck-up notebook. Therefore dev2 profile
-             :dev2  {:dependencies [[clj-kondo "2019.11.23"]]
+             :dev2  {:dependencies [[clj-kondo "2020.07.29"]]
                      :plugins      [[lein-cljfmt "0.6.6"]
                                     [lein-cloverage "1.1.2"]
-                                    [lein-resource "17.06.1"]]
+                                    [lein-resource "17.06.1"]
+                                    [lein-ancient "0.6.15"]]
                      :aliases      {"clj-kondo"
                                     ["run" "-m" "clj-kondo.main"]
 
@@ -92,5 +93,8 @@
             ["change" "version" "leiningen.release/bump-version"]
 
             "cljfmt"
-            ["with-profile" "dev2" "cljfmt" "fix"]})
+            ["with-profile" "dev2" "cljfmt"]
+
+            "ancient"
+            ["with-profile" "dev2" "ancient"]})
 
