@@ -5,7 +5,7 @@
    [configurator.tools :refer [debug? add-dependencies config-project]]))
 
 (def notebook-deps
-  [['org.pinkgorilla/notebook-clj "0.0.6"]])
+  [['org.pinkgorilla/notebook-clj "0.0.8"]])
 
 (defn notebook [project & args]
   (let [config (config-project project args)
@@ -15,7 +15,7 @@
      project
      `(do
         ;(taoensso.timbre/set-level! :debug)
-        (pinkgorilla.notebook.app/start-notebook-server ~config))
+        (pinkgorilla.notebook.app/start-notebook! "jetty" ~config))
      '(do ;(require 'taoensso.timbre)
         (require 'pinkgorilla.notebook.app)))))
 
