@@ -37,8 +37,6 @@
 
 (defn config-project
   "returns a map which represents the configuration"
-  ([project cli-args]
-   (config-project project cli-args "notebook-config.edn"))
   ([project cli-args resource-config-edn]
    (let [lein-config (or (:pinkgorilla project) {})]
      (load-config :resource resource-config-edn

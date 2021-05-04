@@ -13,7 +13,7 @@
 Just add the following to your ~/.lein/profiles.clj
 
 ```
-{:user {:plugins [[org.pinkgorilla/lein-pinkgorilla "0.0.17"]]}}
+{:user {:plugins [[org.pinkgorilla/lein-pinkgorilla "0.0.24"]]}}
 ```
 
 ## in your leiningen project (project.clj)

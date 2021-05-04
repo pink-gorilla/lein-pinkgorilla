@@ -8,7 +8,7 @@
   [['org.pinkgorilla/notebook-clj "0.0.8"]])
 
 (defn notebook [project & args]
-  (let [config (config-project project args)
+  (let [config (config-project project args "notebook-config.edn")
         project (add-dependencies project notebook-deps)
         _ (when debug? (println "project: " project))]
     (eval/eval-in-project
